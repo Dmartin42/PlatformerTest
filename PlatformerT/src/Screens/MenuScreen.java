@@ -52,9 +52,8 @@ public class MenuScreen extends Screen {
 	public void prepare() {
 		super.prepare();
 		this.player1Animator = new ScreenPlayer1Animator();
-		Game.loop().attach(player1Animator);
-		System.out.println("Prepared");
-		player1Animator.playAnimation("player_right");
+		Game.loop().attach(player1Animator.getCurrentAnimation());
+	
 	}
 
 	public static MenuScreen instance() {
