@@ -18,7 +18,7 @@ public class GameRunner {
 		Game.info().setName("BlockY");
 	    Game.info().setSubTitle("");
 	    Game.info().setVersion("v0.0.1");
-	    Game.info().setDescription("An example 2D platformer made with elements from the LITIengine!");
+	    Game.info().setDescription("An example 2D platformer made with elements from the very cool LITIengine!");
 	    Game.init();
 		Game.graphics().setBaseRenderScale(8.00f);
 	    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
