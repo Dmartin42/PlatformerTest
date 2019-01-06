@@ -1,6 +1,8 @@
 main threw an exception:
-java.lang.NullPointerException
-	at Screens.MenuScreen.prepare(MenuScreen.java:55)
+java.lang.UnsupportedOperationException
+	at java.util.concurrent.ConcurrentHashMap$ValuesView.addAll(Unknown Source)
+	at Screens.ScreenPlayer1Animator.<init>(ScreenPlayer1Animator.java:12)
+	at Screens.MenuScreen.prepare(MenuScreen.java:54)
 	at de.gurkenlabs.litiengine.gui.screens.ScreenManager.display(ScreenManager.java:102)
 	at de.gurkenlabs.litiengine.gui.screens.ScreenManager.display(ScreenManager.java:126)
 	at Infrastructure.GameRunner.main(GameRunner.java:33)

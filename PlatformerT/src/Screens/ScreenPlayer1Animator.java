@@ -1,16 +1,20 @@
 package Screens;
 
+import java.util.ArrayList;
+
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.graphics.animation.AnimationController;
 import de.gurkenlabs.litiengine.resources.Resources;
 
 public class ScreenPlayer1Animator extends AnimationController {
 	public ScreenPlayer1Animator() {
-		super(Resources.spritesheets().get("player_front"));
+		super(Resources.spritesheets().get("player_right",true));
 	}
 	private static Animation[] theseAnimations() {
+		ArrayList <Animation> animations = new ArrayList <Animation> ();
+		animations.add(new Animation(Resources.spritesheets().get("player_right"),true));
+		return animations.toArray(new Animation[animations.size()]);
 		
-		return theseAnimations();
 		
 	}
 }

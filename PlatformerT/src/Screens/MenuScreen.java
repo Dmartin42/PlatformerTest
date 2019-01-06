@@ -40,7 +40,7 @@ public class MenuScreen extends Screen {
 
 	public static final String NAME = "BlockY Menu";
 	private static MenuScreen instance;
-	private static AnimationController player1Animator;
+	private static ScreenPlayer1Animator player1Animator;
 	public MenuScreen() {
 		super(NAME);
 	}
@@ -51,10 +51,10 @@ public class MenuScreen extends Screen {
 	}
 	public void prepare() {
 		super.prepare();
-		this.player1Animator = new AnimationController(Resources.spritesheets().get("player_front"));
+		this.player1Animator = new ScreenPlayer1Animator();
 		Game.loop().attach(player1Animator);
 		System.out.println("Prepared");
-	
+		player1Animator.playAnimation("player_right");
 	}
 
 	public static MenuScreen instance() {
@@ -70,6 +70,7 @@ public class MenuScreen extends Screen {
 		final double screenCenterY = Game.window().getResolution().getHeight() / 2.0;
 		final Spritesheet player1_sprite = Resources.spritesheets().get("player_right.png");
 		final Spritesheet player2_sprite = Resources.spritesheets().get("Resources\\sprites\\playertwo_front.png");
+		
 		
 /*		ImageComponent Player1 = new ImageComponent(screenCenterX-500, screenCenterY-50, 100,100, null, "hey",null);
 		ImageComponent Player2 = new ImageComponent(screenCenterX+500 , Player1.getY(), 100,100, null, "Hi", null);
