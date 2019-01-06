@@ -8,13 +8,12 @@ import de.gurkenlabs.litiengine.resources.Resources;
 
 public class ScreenPlayer1Animator extends AnimationController {
 	public ScreenPlayer1Animator() {
-		super(Resources.spritesheets().get("player_right",true));
+		super(new Animation(Resources.spritesheets().get("player_right"), true), getPlayerAnimations());
 	}
-	private static Animation[] theseAnimations() {
+	private static Animation[] getPlayerAnimations () {
 		ArrayList <Animation> animations = new ArrayList <Animation> ();
-		animations.add(new Animation(Resources.spritesheets().get("player_right"),true));
+		animations.add(new Animation(Resources.spritesheets().get("player_right"), true));
 		return animations.toArray(new Animation[animations.size()]);
-		
 		
 	}
 }

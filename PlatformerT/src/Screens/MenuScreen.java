@@ -45,7 +45,6 @@ public class MenuScreen extends Screen {
 		super(NAME);
 	}
 	public void reder(final Graphics2D g) {
-		
 		AnimateP1(g);
 		super.render(g);
 	}
