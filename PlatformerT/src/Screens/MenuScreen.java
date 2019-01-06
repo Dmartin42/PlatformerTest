@@ -44,15 +44,15 @@ public class MenuScreen extends Screen {
 	public MenuScreen() {
 		super(NAME);
 	}
-	public void reder(final Graphics2D g) {
+	public void render(final Graphics2D g) {
 		AnimateP1(g);
+		g.drawArc(100, 30, 50, 100, 30, 60);
 		super.render(g);
 	}
 	public void prepare() {
 		super.prepare();
-		this.player1Animator = new ScreenPlayer1Animator();
-		Game.loop().attach(player1Animator.getCurrentAnimation());
-	
+		
+		Game.loop().attach(this.player1Animator);
 	}
 
 	public static MenuScreen instance() {
@@ -87,12 +87,11 @@ public class MenuScreen extends Screen {
 //		
 	}
 	public static void AnimateP1(Graphics2D g) {
-			System.out.println("Re");
-		 final int defaultSize = 73;
-		    final double logoScale = 6;
+		 final int defaultSize = 32;
+		    final double logoScale = 3;
 		    final double size = defaultSize * logoScale;
 		    double x = Game.window().getCenter().getX() - size / 2.0;
 		    double y = Game.window().getCenter().getY() - size;
-		    ImageRenderer.renderScaled(g, MenuScreen.player1Animator.getCurrentSprite(), 100, 100, logoScale);
+		    ImageRenderer.renderScaled(g, MenuScreen.player1Animator.getCurrentSprite(), x,y, logoScale);
 	}
 }
