@@ -12,7 +12,7 @@ import de.gurkenlabs.litiengine.resources.Spritesheets;
 
 public class Player1AnimationController extends EntityAnimationController<Player1> {
 	public Player1AnimationController(Player1 player) {   
-		super(player, new Animation(Resources.spritesheets().get("player_front"), true), getPlayerAnimations());
+		super(player, new Animation(Resources.spritesheets().get("player_right"), true), getPlayerAnimations());
 	}
 
 

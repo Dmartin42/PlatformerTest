@@ -25,16 +25,11 @@ public static void Initalize() {
     // set a basic gravity for all levels.
     Game.world().setGravity(120);
     
-
+    spawnPlayer1();
     
 	Camera camera = new PositionLockCamera(Player1.instance());
     camera.setClampToMap(true);
     Game.world().setCamera(camera);
-    
-
- 
-
-
 Game.config().graphics().setAntiAliasing(true);	
 }
 

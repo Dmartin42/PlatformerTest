@@ -1,8 +1,10 @@
 package Infrastructure;
 
 import java.awt.event.KeyEvent;
+import java.util.function.Consumer;
 
 import Players.Player1;
+import Screens.MenuScreen;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.Creature;
@@ -18,6 +20,7 @@ public class PlayerInput extends Keyboard {
 	public static void initiate() {
 		Input.keyboard().onKeyPressed(KeyEvent.VK_ESCAPE, e -> System.exit(0));
 	    Input.keyboard().onKeyPressed(KeyEvent.VK_SPACE, e -> Player1.instance().jump());
+	    Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> Game.screens().display(MenuScreen.NAME));
 	    
 	
 		

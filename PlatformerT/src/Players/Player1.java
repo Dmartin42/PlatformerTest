@@ -59,6 +59,7 @@ public class Player1 extends Creature implements IUpdateable {
 					
 				}
 			});
+		  	setSpritePrefix("player_right");
 		    
 	  }
 	

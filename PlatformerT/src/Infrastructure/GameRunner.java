@@ -20,7 +20,7 @@ public class GameRunner {
 	    Game.info().setVersion("v0.0.1");
 	    Game.info().setDescription("An example 2D platformer made with elements from the very cool LITIengine!");
 	    Game.init();
-		Game.graphics().setBaseRenderScale(8.00f);
+		Game.graphics().setBaseRenderScale(1.00f);
 	    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		Game.window().getWindowLocation().setLocation(dim.width/2-MenuScreen.instance().getWidth()/2,dim.height/2-MenuScreen.instance().getHeight()/2); //Sets Window in the center
 	   
