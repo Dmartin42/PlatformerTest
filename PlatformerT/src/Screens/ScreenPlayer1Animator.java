@@ -13,6 +13,7 @@ public class ScreenPlayer1Animator extends AnimationController {
 	private static Animation[] getPlayerAnimations () {
 		ArrayList <Animation> animations = new ArrayList <Animation> ();
 		animations.add(new Animation(Resources.spritesheets().get("player_right"), true));
+		animations.add(new Animation(Resources.spritesheets().get("player_front"), true));
 		return animations.toArray(new Animation[animations.size()]);
 		
 	}

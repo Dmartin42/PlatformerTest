@@ -38,7 +38,7 @@ Game.config().graphics().setAntiAliasing(true);
  */
 public static void spawnPlayer1() {
 	Game.world().addLoadedListener(e -> {
-    	// spawn the player instance on the spawn point with the name "enter"
+    	// spawn the player instance on the spawn point with the name "Beginning"
         Spawnpoint Beginning = e.getSpawnpoint("Beginning");
         if (Beginning != null) {
           Beginning.spawn(Player1.instance());
