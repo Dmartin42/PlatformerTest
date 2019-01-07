@@ -1,7 +1,10 @@
 package Infrastructure;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
 
 import Screens.InGameScreen;
 import Screens.MenuScreen;
@@ -21,15 +24,18 @@ public class GameRunner {
 	    Game.info().setDescription("An example 2D platformer made with elements from the very cool LITIengine!");
 	    Game.init();
 		Game.graphics().setBaseRenderScale(1.00f);
-	    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		Game.window().getWindowLocation().setLocation(dim.width/2-MenuScreen.instance().getWidth()/2,dim.height/2-MenuScreen.instance().getHeight()/2); //Sets Window in the center
-	   
+	    //Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		//Game.window().getWindowLocation().setLocation(dim.width/2-MenuScreen.instance().getWidth()/2,
+						//dim.height/2-MenuScreen.instance().getHeight()/2); //Sets Window in the center
+		Image imageCursorMain = new ImageIcon("Resources\\icons8-cursor-104.png").getImage();
+		Game.window().getRenderComponent().setCursor(imageCursorMain, 0, 0);
 
 	 
 	    // add the screens that will help you organize the different states of your game
 	
 	    Game.screens().add(new InGameScreen());
 	    Game.screens().add(new MenuScreen());
+
 	    Game.screens().display(MenuScreen.NAME);
 	    
 	    

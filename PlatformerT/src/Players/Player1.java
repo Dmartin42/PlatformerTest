@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageTypeSpecifier;
 
+
 import Infrastructure.Logic;
 import abilities.Jump;
 import de.gurkenlabs.litiengine.Direction;
@@ -42,6 +43,9 @@ public class Player1 extends Creature implements IUpdateable {
 	    
 	    this.setController(EntityAnimationController.class, new Player1AnimationController(this));
 	    this.addController(new PlatformingMovementController<>(this));
+	    /*KeyboardEntityController <Player1> keyboardController = new KeyboardEntityController<Player1>(this, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+		this.addController(keyboardController);*/
+		
 	    
 	   
 	    
@@ -175,7 +179,7 @@ public class Player1 extends Creature implements IUpdateable {
 		}
 		
 	}
-
+	
 }
 
 

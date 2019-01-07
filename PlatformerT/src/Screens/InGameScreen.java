@@ -40,6 +40,8 @@ public class InGameScreen extends GameScreen {
 	    // load the first level (resources for the map were implicitly loaded from the game file)
 	    Environment Env1 = new Environment("Resources\\maps\\Lvl1.tmx");
 	    Game.world().loadEnvironment(Env1);
+	    
+	 
 	}
 	public void render (final Graphics2D graphics2D) {
 		if (Game.world().environment() != null) {
