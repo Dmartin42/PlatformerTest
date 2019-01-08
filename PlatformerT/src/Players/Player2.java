@@ -32,6 +32,7 @@ public class Player2 extends Creature implements IUpdateable {
 
 	  private Player2() {
 	    super("Player 2");
+	    setName("Player 2");
 	    
 	    this.setController(EntityAnimationController.class, new Player2AnimationController(this));
 	    this.addController(new PlatformingMovementController<>(this));
@@ -40,20 +41,14 @@ public class Player2 extends Creature implements IUpdateable {
 	    // setup the player's abilities
 	    this.jump = new Jump(this);
 	    this.playerProperties();
-	    Sound lvl1p2Theme = Resources.sounds().get("Resources\\peanuts-song.mp3");
-	    Game.audio().playMusic(lvl1p2Theme);
+	    
 	  }
 	  public void playerProperties() {
 		  	setCollisionBoxHeight(32);
 		  	setCollisionBoxWidth(32);  
 		  	getVelocity().setBaseValue(140.0f); //Sets Velocity pixels per second
-		  	addDeathListener(new CombatEntityDeathListener() {
-				public void onDeath(ICombatEntity entity) {
-					
-				}
-			});
 		  	setSpritePrefix("playertwo_right");
-		    
+		  	
 	  }
 	
 	  public void changeDirection(Direction direction){

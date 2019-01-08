@@ -3,9 +3,11 @@ package Screens;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import GameObjects.endLevel1;
 import Infrastructure.Logic;
 import Infrastructure.PlayerInput;
 import Players.Player1;
+import Players.Player2;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.IEntity;
@@ -29,25 +31,18 @@ public class InGameScreen extends GameScreen {
 	}
 
 	public void prepare() {
-		super.prepare();	    
-	    
-	    // load data from the utiLITI game file
-	    Resources.load("Resources\\maps\\game.litidata");
-	    
-	    Logic.Initalize();
+		super.prepare();
+		Environment Env1 = new Environment("Resources\\maps\\Lvl1.tmx");
+	    Game.world().loadEnvironment(Env1);
+		Logic.Initalize();
 	    PlayerInput.initiate();
+	    endLevel1 finishFlag = new endLevel1();
+	    Game.world().environment().add(finishFlag);
+	    // load data from the utiLITI game file
 	    
 	    // load the first level (resources for the map were implicitly loaded from the game file)
-	    Environment Env1 = new Environment("Resources\\maps\\Lvl1.tmx");
-	    Game.world().loadEnvironment(Env1);
-	    Game.audio().stopMusic();
 	    
-	}
-	public void render (final Graphics2D graphics2D) {
-		if (Game.world().environment() != null) {
-			Game.world().environment().render(graphics2D);
-		}
-		super.render(graphics2D);
+	    
 	}
 	
 	

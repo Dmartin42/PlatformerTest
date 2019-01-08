@@ -30,7 +30,7 @@ import de.gurkenlabs.litiengine.resources.Resources;
 import de.gurkenlabs.litiengine.sound.Sound;
 
 public class MenuScreen extends Screen {
-	private static Boolean Countdown = false;
+	private static boolean Countdown = false;
 	public static final String NAME = "BlockY Menu";
 	private static MenuScreen instance;
 	private static  ScreenPlayer1Animator player1Animator;
@@ -39,8 +39,8 @@ public class MenuScreen extends Screen {
 	private static int counter = -11;
 	private static IUpdateable time;
 	private static String TimeRemain = "3";
-	public static Boolean Player1Selected = false;
-	public static Boolean Player2Selected = false;
+	public static boolean Player1Selected = false;
+	public static boolean Player2Selected = false;
 	
 	public MenuScreen() {
 		super(NAME);
@@ -110,14 +110,15 @@ public class MenuScreen extends Screen {
 		ImageComponent Player1 = new ImageComponent(screenCenterX-380, 500, 200,100, null, "Player 1",null);
 		ImageComponent Player2 = new ImageComponent(screenCenterX+220, 500, 200,100, null, "Player 2", null);
 		Game.window().getRenderComponent().fadeIn(3000);
-		Player1.onClicked(e -> {  //sets things when clicked
-			
-			FinalCountDown(Player1);
+		Player1.onClicked(e -> {  //does things when clicked
 			Player1Selected = true;
+			FinalCountDown(Player1);
+			
 		});
 		Player2.onClicked(e -> {   //does things when clicked
+			Player2Selected = true; 
 			FinalCountDown(Player2);
-			Player2Selected = true;
+			
 		});
 		this.getComponents().add(Player1);
 		this.getComponents().add(Player2);
@@ -149,9 +150,8 @@ public class MenuScreen extends Screen {
 		ImageRenderer.renderScaled(g,MenuScreen.player2Animator.getCurrentSprite(),x,y,Scale);
 	}
 	public static void LoadMainGame() {
-		//Game.window().getRenderComponent().setCursor(null,0,0);
+		Game.window().getRenderComponent().setCursor(null,0,0);
 		Game.screens().display(InGameScreen.NAME);
 		seconds = 0;
-		
 	}
 }

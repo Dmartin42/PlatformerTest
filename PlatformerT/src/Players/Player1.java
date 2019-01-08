@@ -8,6 +8,7 @@ import javax.imageio.ImageTypeSpecifier;
 
 
 import Infrastructure.Logic;
+import Screens.MenuScreen;
 import abilities.Jump;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
@@ -40,6 +41,8 @@ public class Player1 extends Creature implements IUpdateable {
 
 	  private Player1() {
 	    super("Player 1");
+	    setName("Player 1");
+	    
 	    
 	    
 	   
@@ -48,8 +51,7 @@ public class Player1 extends Creature implements IUpdateable {
 	    this.addController(new PlatformingMovementController<>(this));
 	    /*KeyboardEntityController <Player1> keyboardController = new KeyboardEntityController<Player1>(this, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
 		this.addController(keyboardController);*/
-	    Sound lvl1p1Theme = Resources.sounds().get("Resources\\mozart.mp3");
-	    Game.audio().playMusic(lvl1p1Theme);
+	   
 	    // setup the player's abilities
 	    this.jump = new Jump(this);
 	    this.playerProperties();
@@ -64,6 +66,8 @@ public class Player1 extends Creature implements IUpdateable {
 				}
 			});
 		  	setSpritePrefix("player_right");
+		  	 Sound lvl1p1Theme = Resources.sounds().get("Resources\\mozart.mp3");
+			 Game.audio().playMusic(lvl1p1Theme);
 		    
 	  }
 	
@@ -181,6 +185,11 @@ public class Player1 extends Creature implements IUpdateable {
 			this.resurrect();
 			Creator.spawn(this);
 		}
+		if((Player1.instance().getX()>=1154 && Player1.instance().getY()==1170) || (Player2.instance().getX()>=1154 && Player2.instance().getY()==1170))
+			if(MenuScreen.Player1Selected) {
+				Player1.instance().detachControllers();
+				System.out.println("HELLO");
+			}
 		
 	}
 	

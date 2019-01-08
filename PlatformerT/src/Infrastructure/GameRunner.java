@@ -26,7 +26,7 @@ public class GameRunner {
 		Game.graphics().setBaseRenderScale(1.00f);
 		Image imageCursorMain = new ImageIcon("Resources\\icons8-cursor-104.png").getImage();
 		Game.window().getRenderComponent().setCursor(imageCursorMain, 0, 0);
-
+		Resources.load("Resources\\maps\\game.litidata");
 	 
 	    // add the screens that will help you organize the different states of your game
 	
