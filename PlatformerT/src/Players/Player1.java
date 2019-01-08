@@ -16,6 +16,7 @@ import de.gurkenlabs.litiengine.attributes.AttributeModifier;
 import de.gurkenlabs.litiengine.entities.CombatEntityDeathListener;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
+import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.graphics.Camera;
 import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
@@ -25,6 +26,8 @@ import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.input.KeyboardEntityController;
 import de.gurkenlabs.litiengine.input.PlatformingMovementController;
 import de.gurkenlabs.litiengine.physics.CollisionType;
+import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.sound.Sound;
 
 public class Player1 extends Creature implements IUpdateable {
 	public static final int MAX_ADDITIONAL_JUMPS = 1;
@@ -45,11 +48,8 @@ public class Player1 extends Creature implements IUpdateable {
 	    this.addController(new PlatformingMovementController<>(this));
 	    /*KeyboardEntityController <Player1> keyboardController = new KeyboardEntityController<Player1>(this, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
 		this.addController(keyboardController);*/
-		
-	    
-	   
-	    
-	    
+	    Sound lvl1p1Theme = Resources.sounds().get("Resources\\mozart.mp3");
+	    Game.audio().playMusic(lvl1p1Theme);
 	    // setup the player's abilities
 	    this.jump = new Jump(this);
 	    this.playerProperties();
@@ -57,7 +57,7 @@ public class Player1 extends Creature implements IUpdateable {
 	  public void playerProperties() {
 		  	setCollisionBoxHeight(32);
 		  	setCollisionBoxWidth(32);  
-		  	getVelocity().setBaseValue(140.0f); //Sets Velocity pixels/second
+		  	getVelocity().setBaseValue(140.0f); //Sets Velocity pixels per second
 		  	addDeathListener(new CombatEntityDeathListener() {
 				public void onDeath(ICombatEntity entity) {
 					
@@ -176,6 +176,10 @@ public class Player1 extends Creature implements IUpdateable {
 		if(this.getY()>1460) {
 			this.die();
 			Game.world().environment().remove(this);
+			Spawnpoint Creator = Game.world().environment().getSpawnpoint("Beginning");
+			this.setLocation(Creator.getLocation());
+			this.resurrect();
+			Creator.spawn(this);
 		}
 		
 	}

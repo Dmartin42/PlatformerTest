@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.function.Consumer;
 
 import Players.Player1;
+import Players.Player2;
 import Screens.MenuScreen;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
@@ -19,7 +20,12 @@ public class PlayerInput extends Keyboard {
 	public PlayerInput() {}
 	public static void initiate() {
 		Input.keyboard().onKeyPressed(KeyEvent.VK_ESCAPE, e -> System.exit(0));
-	    Input.keyboard().onKeyPressed(KeyEvent.VK_SPACE, e -> Player1.instance().jump());
+	    Input.keyboard().onKeyPressed(KeyEvent.VK_SPACE, e -> {
+	    	if(MenuScreen.Player1Selected)
+	    		Player1.instance().jump();
+	    	if(MenuScreen.Player2Selected)
+	    		Player2.instance().jump();
+	    });
 	    Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> Game.screens().display(MenuScreen.NAME));
 	  
 			/*Input.keyboard().onKeyPressed(KeyEvent.VK_UP, (key) -> this.changeDirection(Direction.UP));

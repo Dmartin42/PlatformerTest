@@ -33,7 +33,7 @@ public static void Initalize() {
     }
     else if(MenuScreen.Player2Selected) {
     	PlayerCamera(Player2.instance());
-    	spawnPlayer2(Player2.instance());
+    	spawnPlayer1(Player2.instance());
     }
     
 	
@@ -57,23 +57,13 @@ public static void spawnPlayer1(IMobileEntity player) {
     	// spawn the player instance on the spawn point with the name "Beginning"
         Spawnpoint Beginning = e.getSpawnpoint("Beginning");
         if (Beginning != null) {
-          Beginning.spawn(Player1.instance());
+          Beginning.spawn(player);
         }
         else 
         	System.out.println("null");
       });
 }
-public static void spawnPlayer2(IMobileEntity player) {
-	Game.world().addLoadedListener(e -> {
-		// spawn the player instance on the spawn point with the name "Beginning"
-		Spawnpoint Beginning = e.getSpawnpoint("Beginning");
-		if (Beginning != null) {
-			Beginning.spawn(Player2.instance());
-		}
-		else 
-			System.out.println("null");
-	});
-}
+
 
 
 

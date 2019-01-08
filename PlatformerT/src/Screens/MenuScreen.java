@@ -57,12 +57,9 @@ public class MenuScreen extends Screen {
 		g.drawRect(x-300, y, 200,200);
 		g.setFont(new Font("Times New Roman",Font.BOLD, 178));
 		if(Countdown) {
-	
 			Game.graphics().renderText(g, TimeRemain,Game.window().getCenter());
 			System.out.println("Time" + TimeRemain);
 		}
-
-	
 	}
 	public void prepare() {
 		super.prepare();
@@ -116,11 +113,11 @@ public class MenuScreen extends Screen {
 		Player1.onClicked(e -> {  //sets things when clicked
 			
 			FinalCountDown(Player1);
-			
+			Player1Selected = true;
 		});
 		Player2.onClicked(e -> {   //does things when clicked
 			FinalCountDown(Player2);
-			
+			Player2Selected = true;
 		});
 		this.getComponents().add(Player1);
 		this.getComponents().add(Player2);
@@ -149,7 +146,7 @@ public class MenuScreen extends Screen {
 		final double size =  Scale * defaultSize;
 		double x = (Game.window().getCenter().getX() - size / 2.0)+315;
 		double y = (Game.window().getCenter().getY() - size / 2.0);
-		ImageRenderer.renderScaled(g,MenuScreen.player2Animator.getCurrentSprite(),x,y,Scale );
+		ImageRenderer.renderScaled(g,MenuScreen.player2Animator.getCurrentSprite(),x,y,Scale);
 	}
 	public static void LoadMainGame() {
 		//Game.window().getRenderComponent().setCursor(null,0,0);
