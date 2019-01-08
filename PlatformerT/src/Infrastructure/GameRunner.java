@@ -23,7 +23,7 @@ public class GameRunner {
 	    Game.info().setVersion("v0.0.1");
 	    Game.info().setDescription("An example 2D platformer made with elements from the very cool LITIengine!");
 	    Game.init();
-		Game.graphics().setBaseRenderScale(2.00f);
+		Game.graphics().setBaseRenderScale(1.00f);
 		Image imageCursorMain = new ImageIcon("Resources\\icons8-cursor-104.png").getImage();
 		Game.window().getRenderComponent().setCursor(imageCursorMain, 0, 0);
 
@@ -32,7 +32,6 @@ public class GameRunner {
 	
 	    Game.screens().add(new InGameScreen());
 	    Game.screens().add(new MenuScreen());
-
 	    Game.screens().display(MenuScreen.NAME);
 	    
 	    

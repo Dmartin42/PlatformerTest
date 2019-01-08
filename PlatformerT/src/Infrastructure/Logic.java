@@ -1,10 +1,13 @@
 package Infrastructure;
 
 import Players.Player1;
+import Players.Player2;
+import Screens.MenuScreen;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.IEntity;
+import de.gurkenlabs.litiengine.entities.IMobileEntity;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.environment.EnvironmentListener;
 import de.gurkenlabs.litiengine.environment.IEnvironment;
@@ -20,33 +23,58 @@ public Logic() {
 }
 
 public static void Initalize() {
-	
- 
     // set a basic gravity for all levels.
     Game.world().setGravity(120);
+    Game.world().camera().setClampToMap(true);
     
-    spawnPlayer1();
+    if(MenuScreen.Player1Selected) {
+    	PlayerCamera(Player1.instance());
+    	spawnPlayer1(Player1.instance());
+    }
+    else if(MenuScreen.Player2Selected) {
+    	PlayerCamera(Player2.instance());
+    	spawnPlayer2(Player2.instance());
+    }
     
-	Camera camera = new PositionLockCamera(Player1.instance());
-    camera.setClampToMap(true);
-    Game.world().setCamera(camera);
-Game.config().graphics().setAntiAliasing(true);	
+	
+    Game.config().graphics().setAntiAliasing(true);	
 }
 
 /**
- Spawns Player1 
+ *camera lock on player selected
  */
-public static void spawnPlayer1() {
+private static void PlayerCamera(IEntity player) {
+	Camera camera = new PositionLockCamera(player);
+	camera.setClampToMap(true);
+	Game.world().setCamera(camera);
+}
+
+/**
+ Spawns Player
+ */
+public static void spawnPlayer1(IMobileEntity player) {
 	Game.world().addLoadedListener(e -> {
     	// spawn the player instance on the spawn point with the name "Beginning"
         Spawnpoint Beginning = e.getSpawnpoint("Beginning");
         if (Beginning != null) {
           Beginning.spawn(Player1.instance());
-          System.out.println("Spawned");
         }
         else 
         	System.out.println("null");
       });
 }
+public static void spawnPlayer2(IMobileEntity player) {
+	Game.world().addLoadedListener(e -> {
+		// spawn the player instance on the spawn point with the name "Beginning"
+		Spawnpoint Beginning = e.getSpawnpoint("Beginning");
+		if (Beginning != null) {
+			Beginning.spawn(Player2.instance());
+		}
+		else 
+			System.out.println("null");
+	});
+}
+
+
 
 }

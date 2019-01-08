@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.Stroke;
@@ -14,6 +15,7 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
 
+import Infrastructure.Logic;
 import Players.Player1;
 import Players.Player1AnimationController;
 import de.gurkenlabs.litiengine.Game;
@@ -37,11 +39,14 @@ public class MenuScreen extends Screen {
 	private static int counter = -11;
 	private static IUpdateable time;
 	private static String TimeRemain = "3";
+	public static Boolean Player1Selected = false;
+	public static Boolean Player2Selected = false;
 	
 	public MenuScreen() {
 		super(NAME);
 	}
 	public void render(final Graphics2D g) {
+		super.render(g);
 		AnimateP1(g);
 		AnimateP2(g);
 		double size = 32*5;
@@ -51,10 +56,13 @@ public class MenuScreen extends Screen {
 		g.drawRect(x+295, y, 200,200);
 		g.drawRect(x-300, y, 200,200);
 		g.setFont(new Font("Times New Roman",Font.BOLD, 178));
-		if(Countdown)
-			Game.graphics().renderText(g,TimeRemain,Game.window().getCenter());
+		if(Countdown) {
+	
+			Game.graphics().renderText(g, TimeRemain,Game.window().getCenter());
+			System.out.println("Time" + TimeRemain);
+		}
 
-		super.render(g);
+	
 	}
 	public void prepare() {
 		super.prepare();
@@ -79,7 +87,7 @@ public class MenuScreen extends Screen {
 					if(seconds == 3)
 						TimeRemain = "1";
 					if(seconds == 4) {
-						TimeRemain = "";
+						TimeRemain = "G0!";
 						Game.loop().detach(time);
 						counter = 0;
 						LoadMainGame();
@@ -104,19 +112,28 @@ public class MenuScreen extends Screen {
 		final double screenCenterY = Game.window().getResolution().getHeight() / 2.0;	
 		ImageComponent Player1 = new ImageComponent(screenCenterX-380, 500, 200,100, null, "Player 1",null);
 		ImageComponent Player2 = new ImageComponent(screenCenterX+220, 500, 200,100, null, "Player 2", null);
-		Game.window().getRenderComponent().fadeIn(1000);
+		Game.window().getRenderComponent().fadeIn(3000);
 		Player1.onClicked(e -> {  //sets things when clicked
-			this.getComponents().remove(Player1);
-			Game.loop().attach(time);
-			Sound Ding = Resources.sounds().get("Resources\\countdown.mp3");
-			Game.audio().playSound(Ding, false);
-			Countdown = true;
+			
+			FinalCountDown(Player1);
+			
 		});
 		Player2.onClicked(e -> {   //does things when clicked
+			FinalCountDown(Player2);
 			
 		});
 		this.getComponents().add(Player1);
 		this.getComponents().add(Player2);
+	}
+	/**
+	 * @param Player1
+	 */
+	public void FinalCountDown(ImageComponent image) {
+		this.getComponents().remove(image);
+		Game.loop().attach(time);
+		Sound Ding = Resources.sounds().get("Resources\\countdown.mp3");
+		Game.audio().playSound(Ding, false);
+		Countdown = true;
 	}
 	public static void AnimateP1(Graphics2D g) {
 		 final int defaultSize = 32;
@@ -135,9 +152,8 @@ public class MenuScreen extends Screen {
 		ImageRenderer.renderScaled(g,MenuScreen.player2Animator.getCurrentSprite(),x,y,Scale );
 	}
 	public static void LoadMainGame() {
-		Game.window().getRenderComponent().setCursor(null,0,0);
+		//Game.window().getRenderComponent().setCursor(null,0,0);
 		Game.screens().display(InGameScreen.NAME);
-		Game.audio().stopMusic();
 		seconds = 0;
 		
 	}

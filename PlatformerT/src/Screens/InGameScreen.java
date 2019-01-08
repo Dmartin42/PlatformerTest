@@ -41,7 +41,7 @@ public class InGameScreen extends GameScreen {
 	    Environment Env1 = new Environment("Resources\\maps\\Lvl1.tmx");
 	    Game.world().loadEnvironment(Env1);
 	    Sound LVL1theme  = Resources.sounds().get("Resources\\mozart.mp3");
-	    Game.audio().playSound(Player1.instance(),LVL1theme,true);
+	    Game.audio().playMusic(LVL1theme);
 	    
 	}
 	public void render (final Graphics2D graphics2D) {
