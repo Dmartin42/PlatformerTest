@@ -1,5 +1,6 @@
 package Infrastructure;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -13,6 +14,7 @@ import de.gurkenlabs.litiengine.environment.Environment;
 import de.gurkenlabs.litiengine.resources.Resources;
 import de.gurkenlabs.litiengine.graphics.Camera;
 import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
+import de.gurkenlabs.litiengine.gui.screens.Resolution;
 
 public class GameRunner {
 
@@ -24,6 +26,8 @@ public class GameRunner {
 	    Game.info().setDescription("An example 2D platformer made with elements from the very cool LITIengine!");
 	    Game.init();
 		Game.graphics().setBaseRenderScale(1.00f);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		
 		Image imageCursorMain = new ImageIcon("Resources\\icons8-cursor-104.png").getImage();
 		Game.window().getRenderComponent().setCursor(imageCursorMain, 0, 0);
 		Resources.load("Resources\\maps\\game.litidata");

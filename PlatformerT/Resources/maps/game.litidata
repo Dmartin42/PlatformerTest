@@ -92,8 +92,8 @@
       <property name="collisionboxWidthFactor" type="float" value="19.200000000000003"/>
       <property name="addShadow" type="bool" value="true"/>
       <property name="indestructible" type="bool" value="true"/>
-      <property name="collision" type="bool" value="true"/>
       <property name="health" type="int" value="20"/>
+      <property name="collision" type="bool" value="true"/>
      </properties>
     </object>
    </objectgroup>
@@ -142,7 +142,7 @@
       <property name="isObstacle" value="true"/>
      </properties>
     </object>
-    <object id="9" name="" type="COLLISIONBOX" x="1500" y="1140" width="150" height="90">
+    <object id="9" name="" type="COLLISIONBOX" x="1504" y="1152" width="144" height="80">
      <properties>
       <property name="isObstacle" value="true"/>
      </properties>

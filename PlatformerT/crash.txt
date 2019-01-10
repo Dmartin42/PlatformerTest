@@ -1,8 +1,10 @@
 main threw an exception:
-java.lang.NullPointerException
-	at GameObjects.endLevel1.properities(endLevel1.java:22)
-	at GameObjects.endLevel1.<init>(endLevel1.java:16)
+java.lang.Error: Unresolved compilation problem: 
+	CENTER_LEFTd cannot be resolved or is not a field
+
+	at GameObjects.endLevel1.properities(endLevel1.java:34)
+	at GameObjects.endLevel1.<init>(endLevel1.java:23)
 	at Screens.InGameScreen.prepare(InGameScreen.java:39)
 	at de.gurkenlabs.litiengine.gui.screens.ScreenManager.display(ScreenManager.java:102)
 	at de.gurkenlabs.litiengine.gui.screens.ScreenManager.add(ScreenManager.java:82)
-	at Infrastructure.GameRunner.main(GameRunner.java:33)
+	at Infrastructure.GameRunner.main(GameRunner.java:37)

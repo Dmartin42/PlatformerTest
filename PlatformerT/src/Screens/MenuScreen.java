@@ -1,6 +1,6 @@
 package Screens;
 
-import java.awt.Color;
+import java.awt.Color;import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.Stroke;
+import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
@@ -24,6 +25,7 @@ import de.gurkenlabs.litiengine.graphics.ImageRenderer;
 
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
+import de.gurkenlabs.litiengine.gui.screens.Resolution;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 
 import de.gurkenlabs.litiengine.resources.Resources;
@@ -69,8 +71,9 @@ public class MenuScreen extends Screen {
 		
 		this.player2Animator = new ScreenPlayer2Animator();
 		Game.loop().attach(this.player2Animator);
-		
-		 time = new IUpdateable() {
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		Game.window().getRenderComponent().setSize(dim);
+		time = new IUpdateable() {
 				@Override
 				public void update() {
 					// TODO Auto-generated method stub

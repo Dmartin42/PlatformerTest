@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageTypeSpecifier;
 
-
+import GameObjects.endLevel1;
 import Infrastructure.Logic;
 import Screens.MenuScreen;
 import abilities.Jump;
@@ -59,7 +59,7 @@ public class Player1 extends Creature implements IUpdateable {
 	  public void playerProperties() {
 		  	setCollisionBoxHeight(32);
 		  	setCollisionBoxWidth(32);  
-		  	getVelocity().setBaseValue(140.0f); //Sets Velocity pixels per second
+		  	getVelocity().setBaseValue(200.0f); //Sets Velocity pixels per second 140
 		  	addDeathListener(new CombatEntityDeathListener() {
 				public void onDeath(ICombatEntity entity) {
 					
@@ -68,6 +68,8 @@ public class Player1 extends Creature implements IUpdateable {
 		  	setSpritePrefix("player_right");
 		  	 Sound lvl1p1Theme = Resources.sounds().get("Resources\\mozart.mp3");
 			 Game.audio().playMusic(lvl1p1Theme);
+			 setCollision(true);
+			 Game.physics().add(this);
 		    
 	  }
 	
@@ -185,15 +187,11 @@ public class Player1 extends Creature implements IUpdateable {
 			this.resurrect();
 			Creator.spawn(this);
 		}
-		if((Player1.instance().getX()>=1154 && Player1.instance().getY()==1170) || (Player2.instance().getX()>=1154 && Player2.instance().getY()==1170))
-			if(MenuScreen.Player1Selected) {
-				Player1.instance().detachControllers();
-				System.out.println("HELLO");
-			}
-		
-	}
 	
+	}
 }
+	
+
 
 
 

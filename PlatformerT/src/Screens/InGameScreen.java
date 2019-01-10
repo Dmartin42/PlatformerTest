@@ -38,6 +38,7 @@ public class InGameScreen extends GameScreen {
 	    PlayerInput.initiate();
 	    endLevel1 finishFlag = new endLevel1();
 	    Game.world().environment().add(finishFlag);
+	    
 	    // load data from the utiLITI game file
 	    
 	    // load the first level (resources for the map were implicitly loaded from the game file)
