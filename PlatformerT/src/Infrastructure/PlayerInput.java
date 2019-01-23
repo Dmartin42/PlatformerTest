@@ -36,12 +36,9 @@ public class PlayerInput extends Keyboard {
 	    });
 	    Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> Game.screens().display(MenuScreen.NAME));
 	  
-			/*Input.keyboard().onKeyPressed(KeyEvent.VK_UP, (key) -> this.changeDirection(Direction.UP));
-			Input.keyboard().onKeyPressed(KeyEvent.VK_DOWN, (key) -> this.changeDirection(Direction.DOWN));
-			Input.keyboard().onKeyPressed(KeyEvent.VK_LEFT, (key) -> this.changeDirection(Direction.LEFT));
-			Input.keyboard().onKeyPressed(KeyEvent.VK_RIGHT, (key) -> this.changeDirection(Direction.RIGHT));
+			
 		
-*/
+
 	
 		
 		}

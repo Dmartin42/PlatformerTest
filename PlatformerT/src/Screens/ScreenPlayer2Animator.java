@@ -12,7 +12,6 @@ public class ScreenPlayer2Animator extends AnimationController {
 	}
 	private static Animation[] getPlayerAnimations () {
 		ArrayList <Animation> animations = new ArrayList <Animation> ();
-		animations.add(new Animation(Resources.spritesheets().get("playertwo_right"), true));
 		animations.add(new Animation(Resources.spritesheets().get("playertwo_front"), true));
 		return animations.toArray(new Animation[animations.size()]);
 		

@@ -30,7 +30,6 @@ public class Jump extends Ability {
 	    @Override
 	    protected Force applyForce(ICombatEntity affectedEntity) {
 	      // create a new force and apply it to the player
-	      
 	      GravityForce force = new GravityForce(affectedEntity, this.getStrength(), Direction.UP);
 	      this.getAbility().getExecutor().getMovementController().apply(force);
 	      return force;

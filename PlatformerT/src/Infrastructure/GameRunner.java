@@ -26,6 +26,7 @@ public class GameRunner {
 	    Game.info().setDescription("An example 2D platformer made with elements from the very cool LITIengine!");
 	    Game.init();
 		Game.graphics().setBaseRenderScale(1.00f);
+		Game.window().getResolution().setSize(1700, 1700);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		Image imageCursorMain = new ImageIcon("Resources\\icons8-cursor-104.png").getImage();

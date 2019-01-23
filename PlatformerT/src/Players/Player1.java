@@ -1,18 +1,22 @@
 package Players;
 
 import java.awt.event.KeyEvent;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageTypeSpecifier;
 
-import GameObjects.endLevel1;
+import GameObjects.EndFlag;
 import Infrastructure.Logic;
 import Screens.MenuScreen;
 import abilities.Jump;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
+import de.gurkenlabs.litiengine.annotation.CollisionInfo;
+import de.gurkenlabs.litiengine.annotation.EntityInfo;
+import de.gurkenlabs.litiengine.annotation.MovementInfo;
 import de.gurkenlabs.litiengine.attributes.AttributeModifier;
 import de.gurkenlabs.litiengine.entities.CombatEntityDeathListener;
 import de.gurkenlabs.litiengine.entities.Creature;
@@ -22,6 +26,7 @@ import de.gurkenlabs.litiengine.graphics.Camera;
 import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.graphics.animation.AnimationController;
+import de.gurkenlabs.litiengine.graphics.animation.CreatureAnimationController;
 import de.gurkenlabs.litiengine.graphics.animation.EntityAnimationController;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.input.KeyboardEntityController;
@@ -29,8 +34,11 @@ import de.gurkenlabs.litiengine.input.PlatformingMovementController;
 import de.gurkenlabs.litiengine.physics.CollisionType;
 import de.gurkenlabs.litiengine.resources.Resources;
 import de.gurkenlabs.litiengine.sound.Sound;
-
+@EntityInfo(width = 32, height = 32)
+@MovementInfo(velocity = 200)
+@CollisionInfo(collisionBoxWidth = 8, collisionBoxHeight = 16, collision = true)
 public class Player1 extends Creature implements IUpdateable {
+	
 	public static final int MAX_ADDITIONAL_JUMPS = 1;
 
 	  private static Player1 instance;
@@ -40,18 +48,22 @@ public class Player1 extends Creature implements IUpdateable {
 	  private int consecutiveJumps;
 
 	  private Player1() {
-	    super("Player 1");
+	    super("player");
 	    setName("Player 1");
-	    
+	    setFacingDirection(Direction.LEFT);
 	    
 	    
 	   
 	    
-	    this.setController(EntityAnimationController.class, new Player1AnimationController(this));
+	
+	    this.addController(new CreatureAnimationController<>(this,true));
+	  //  CreatureAnimationController AN = this.getController(CreatureAnimationController.class);
+	    
+	    
 	    this.addController(new PlatformingMovementController<>(this));
-	    /*KeyboardEntityController <Player1> keyboardController = new KeyboardEntityController<Player1>(this, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
-		this.addController(keyboardController);*/
-	   
+	    
+
+	    
 	    // setup the player's abilities
 	    this.jump = new Jump(this);
 	    this.playerProperties();
@@ -62,76 +74,28 @@ public class Player1 extends Creature implements IUpdateable {
 		  	getVelocity().setBaseValue(200.0f); //Sets Velocity pixels per second 140
 		  	addDeathListener(new CombatEntityDeathListener() {
 				public void onDeath(ICombatEntity entity) {
+					Spawnpoint Creator = Game.world().environment().getSpawnpoint("Beginning");
 					
+					Player1.instance().resurrect();
+					Creator.spawn(Player1.instance());
 				}
 			});
-		  	setSpritePrefix("player_right");
+		  	
+		  	 setSpritePrefix("player_right");
 		  	 Sound lvl1p1Theme = Resources.sounds().get("Resources\\mozart.mp3");
-			 Game.audio().playMusic(lvl1p1Theme);
 			 setCollision(true);
 			 Game.physics().add(this);
+			 Game.audio().playSound(new Point2D.Double(32, 324), lvl1p1Theme);
+			 Game.audio().setMaxDistance(10);
+			 
 		    
 	  }
 	
-	  public void changeDirection(Direction direction){
-		  switch (direction) {
-			case UP:
-				if (Input.keyboard().isPressed(KeyEvent.VK_LEFT)) {
-					this.getAnimationController().playAnimation("player_left");
-				}
-				else if (Input.keyboard().isPressed(KeyEvent.VK_RIGHT)) {
-					this.getAnimationController().playAnimation("player_right");
-				}
-				else {
-					this.getAnimationController().playAnimation("player_front");
-					
-				}
-				break;
-			case DOWN:
-				if (Input.keyboard().isPressed(KeyEvent.VK_LEFT)) {
-					this.getAnimationController().playAnimation("player_back");
-				}
-				else if (Input.keyboard().isPressed(KeyEvent.VK_RIGHT)) {
-					this.getAnimationController().playAnimation("player_right");
-				}
-				else {
-					this.getAnimationController().playAnimation("player_back");
-				
-				}
-				break;
-			case LEFT:
-				if (Input.keyboard().isPressed(KeyEvent.VK_UP)) {
-					this.getAnimationController().playAnimation("player_left");
-				}
-				else if (Input.keyboard().isPressed(KeyEvent.VK_DOWN)) {
-					this.getAnimationController().playAnimation("player_back");
-				}
-				else {
-					this.getAnimationController().playAnimation("player_left");
-				}
-				break;
-			case RIGHT:
-				if (Input.keyboard().isPressed(KeyEvent.VK_UP)) {
-					this.getAnimationController().playAnimation("player_front");
-				
-				}
-				else if (Input.keyboard().isPressed(KeyEvent.VK_DOWN)) {
-					this.getAnimationController().playAnimation("player_right");
-					
-				}
-				else {
-					this.getAnimationController().playAnimation("player_right");
-				}
-				
-				break;
-			default:
-				break;
-		}
-		this.getAnimationController().update();
+	
 		
 		
 	
-	  }
+	  
 
 	  public static Player1 instance() {
 	    if (instance == null) {
@@ -181,11 +145,8 @@ public class Player1 extends Creature implements IUpdateable {
 	
 		if(this.getY()>1460) {
 			this.die();
-			Game.world().environment().remove(this);
-			Spawnpoint Creator = Game.world().environment().getSpawnpoint("Beginning");
-			this.setLocation(Creator.getLocation());
-			this.resurrect();
-			Creator.spawn(this);
+			
+			
 		}
 	
 	}
